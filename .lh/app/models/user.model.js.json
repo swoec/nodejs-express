@@ -1,0 +1,34 @@
+{
+    "sourceFile": "app/models/user.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1657948164201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657948180498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,7 +13,7 @@\n         type: Sequelize.BOOLEAN\n       }\n     });\n   \n-    return Tutorial;\n+    return User;\n   };\n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657948756823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,8 @@\n         type: Sequelize.STRING\n       },\n       address: {\n         type: Sequelize.STRING\n-      },\n-      published: {\n-        type: Sequelize.BOOLEAN\n       }\n     });\n   \n     return User;\n"
+                },
+                {
+                    "date": 1657952773455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n module.exports = (sequelize, Sequelize) => {\n     const User = sequelize.define(\"user\", {\n       name: {\n-        type: Sequelize.STRING\n+        type: Sequelize.STRING,\n+        allowNull: false\n       },\n       phone: {\n         type: Sequelize.STRING\n       },\n"
+                },
+                {
+                    "date": 1657962695094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,16 @@\n module.exports = (sequelize, Sequelize) => {\n-    const User = sequelize.define(\"user\", {\n-      name: {\n-        type: Sequelize.STRING,\n-        allowNull: false\n-      },\n-      phone: {\n-        type: Sequelize.STRING\n-      },\n-      address: {\n-        type: Sequelize.STRING\n-      }\n-    });\n-  \n-    return User;\n-  };\n-  \n\\ No newline at end of file\n+  const User = sequelize.define(\"user\", {\n+    name: {\n+      type: Sequelize.STRING,\n+      allowNull: false,\n+    },\n+    phone: {\n+      type: Sequelize.STRING,\n+    },\n+    address: {\n+      type: Sequelize.STRING,\n+    },\n+  });\n+\n+  return User;\n+};\n"
+                }
+            ],
+            "date": 1657948164201,
+            "name": "Commit-0",
+            "content": "module.exports = (sequelize, Sequelize) => {\n    const User = sequelize.define(\"user\", {\n      name: {\n        type: Sequelize.STRING\n      },\n      phone: {\n        type: Sequelize.STRING\n      },\n      address: {\n        type: Sequelize.STRING\n      },\n      published: {\n        type: Sequelize.BOOLEAN\n      }\n    });\n  \n    return Tutorial;\n  };\n  "
+        }
+    ]
+}

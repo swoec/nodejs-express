@@ -1,0 +1,705 @@
+http://localhost:8080/api/jobs
+The Response of the Job API of default DESC order:
+
+[
+    {
+        "id": 17,
+        "name": "otherjob7",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:37.000Z",
+        "updatedAt": "2022-07-16T08:53:37.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 16,
+        "name": "otherjob6",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:32.000Z",
+        "updatedAt": "2022-07-16T08:53:32.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 15,
+        "name": "otherjob5",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:27.000Z",
+        "updatedAt": "2022-07-16T08:53:27.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 14,
+        "name": "otherjob4",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:22.000Z",
+        "updatedAt": "2022-07-16T08:53:22.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 13,
+        "name": "otherjob3",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:17.000Z",
+        "updatedAt": "2022-07-16T08:53:17.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 12,
+        "name": "otherjob2",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:12.000Z",
+        "updatedAt": "2022-07-16T08:53:12.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 11,
+        "name": "otherjob1",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:04.000Z",
+        "updatedAt": "2022-07-16T08:53:04.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 10,
+        "name": "otherjob",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:52:58.000Z",
+        "updatedAt": "2022-07-16T08:52:58.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 9,
+        "name": "testjob8",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:32.000Z",
+        "updatedAt": "2022-07-16T07:42:32.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 8,
+        "name": "testjob7",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:26.000Z",
+        "updatedAt": "2022-07-16T07:42:26.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 7,
+        "name": "testjob6",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:21.000Z",
+        "updatedAt": "2022-07-16T07:42:21.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 6,
+        "name": "testjob5",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:17.000Z",
+        "updatedAt": "2022-07-16T07:42:17.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 5,
+        "name": "testjob4",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:12.000Z",
+        "updatedAt": "2022-07-16T07:42:12.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 4,
+        "name": "testjob3",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:06.000Z",
+        "updatedAt": "2022-07-16T07:42:06.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 3,
+        "name": "testjob2",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:00.000Z",
+        "updatedAt": "2022-07-16T07:42:00.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 2,
+        "name": "testjob1",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:55.000Z",
+        "updatedAt": "2022-07-16T07:41:55.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 1,
+        "name": "testjob",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:23.000Z",
+        "updatedAt": "2022-07-16T07:41:23.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    }
+]
+
+http://localhost:8080/api/jobs?ordered=ASC
+The Response of ASC order:
+
+[
+    {
+        "id": 1,
+        "name": "testjob",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:23.000Z",
+        "updatedAt": "2022-07-16T07:41:23.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 2,
+        "name": "testjob1",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:55.000Z",
+        "updatedAt": "2022-07-16T07:41:55.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 3,
+        "name": "testjob2",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:00.000Z",
+        "updatedAt": "2022-07-16T07:42:00.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 4,
+        "name": "testjob3",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:06.000Z",
+        "updatedAt": "2022-07-16T07:42:06.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 5,
+        "name": "testjob4",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:12.000Z",
+        "updatedAt": "2022-07-16T07:42:12.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 6,
+        "name": "testjob5",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:17.000Z",
+        "updatedAt": "2022-07-16T07:42:17.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 7,
+        "name": "testjob6",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:21.000Z",
+        "updatedAt": "2022-07-16T07:42:21.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 8,
+        "name": "testjob7",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:26.000Z",
+        "updatedAt": "2022-07-16T07:42:26.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 9,
+        "name": "testjob8",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:32.000Z",
+        "updatedAt": "2022-07-16T07:42:32.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 10,
+        "name": "otherjob",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:52:58.000Z",
+        "updatedAt": "2022-07-16T08:52:58.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 11,
+        "name": "otherjob1",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:04.000Z",
+        "updatedAt": "2022-07-16T08:53:04.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 12,
+        "name": "otherjob2",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:12.000Z",
+        "updatedAt": "2022-07-16T08:53:12.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 13,
+        "name": "otherjob3",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:17.000Z",
+        "updatedAt": "2022-07-16T08:53:17.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 14,
+        "name": "otherjob4",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:22.000Z",
+        "updatedAt": "2022-07-16T08:53:22.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 15,
+        "name": "otherjob5",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:27.000Z",
+        "updatedAt": "2022-07-16T08:53:27.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 16,
+        "name": "otherjob6",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:32.000Z",
+        "updatedAt": "2022-07-16T08:53:32.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 17,
+        "name": "otherjob7",
+        "status": 1,
+        "userId": 2,
+        "createdAt": "2022-07-16T08:53:37.000Z",
+        "updatedAt": "2022-07-16T08:53:37.000Z",
+        "user": {
+            "id": 2,
+            "name": "adam",
+            "phone": "021025999999",
+            "address": "Mt Eden",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    }
+]
+
+http://localhost:8080/api/jobs?ordered=ASC&name=testjob
+The Response of the filter :
+
+[
+    {
+        "id": 1,
+        "name": "testjob",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:23.000Z",
+        "updatedAt": "2022-07-16T07:41:23.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 2,
+        "name": "testjob1",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:41:55.000Z",
+        "updatedAt": "2022-07-16T07:41:55.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 3,
+        "name": "testjob2",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:00.000Z",
+        "updatedAt": "2022-07-16T07:42:00.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 4,
+        "name": "testjob3",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:06.000Z",
+        "updatedAt": "2022-07-16T07:42:06.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 5,
+        "name": "testjob4",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:12.000Z",
+        "updatedAt": "2022-07-16T07:42:12.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 6,
+        "name": "testjob5",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:17.000Z",
+        "updatedAt": "2022-07-16T07:42:17.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 7,
+        "name": "testjob6",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:21.000Z",
+        "updatedAt": "2022-07-16T07:42:21.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 8,
+        "name": "testjob7",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:26.000Z",
+        "updatedAt": "2022-07-16T07:42:26.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    },
+    {
+        "id": 9,
+        "name": "testjob8",
+        "status": 1,
+        "userId": 1,
+        "createdAt": "2022-07-16T07:42:32.000Z",
+        "updatedAt": "2022-07-16T07:42:32.000Z",
+        "user": {
+            "id": 1,
+            "name": "alex",
+            "phone": "02102510440",
+            "address": "Woodside road",
+            "createdAt": "2022-06-15T00:00:00.000Z",
+            "updatedAt": "2022-06-15T00:00:00.000Z"
+        }
+    }
+]

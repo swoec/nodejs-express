@@ -1,0 +1,150 @@
+{
+    "sourceFile": "app/controllers/note.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 33,
+            "patches": [
+                {
+                    "date": 1657951433761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657951446214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const db = require(\"../models\");\n-const Jobs = db.jobs;\n+const Jobs = db.notes;\n const Op = db.Sequelize.Op;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951452489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const db = require(\"../models\");\n-const Jobs = db.notes;\n+const Notes = db.notes;\n const Op = db.Sequelize.Op;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951488561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,34 @@\n const db = require(\"../models\");\n const Notes = db.notes;\n-const Op = db.Sequelize.Op;\n\\ No newline at end of file\n+const Op = db.Sequelize.Op;\n+\n+\n+// Create and Save a new Tutorial\n+exports.create = (req, res) => {\n+    // Validate request\n+    if (!req.body.title) {\n+      res.status(400).send({\n+        message: \"Content can not be empty!\"\n+      });\n+      return;\n+    }\n+  \n+    // Create a Tutorial\n+    const tutorial = {\n+      title: req.body.title,\n+      description: req.body.description,\n+      published: req.body.published ? req.body.published : false\n+    };\n+  \n+    // Save Tutorial in the database\n+    Tutorial.create(tutorial)\n+      .then(data => {\n+        res.send(data);\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message:\n+            err.message || \"Some error occurred while creating the Tutorial.\"\n+        });\n+      });\n+  };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951521210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n // Create and Save a new Tutorial\n exports.create = (req, res) => {\n     // Validate request\n-    if (!req.body.title) {\n+    if (!req.body.jobId) {\n       res.status(400).send({\n         message: \"Content can not be empty!\"\n       });\n       return;\n"
+                },
+                {
+                    "date": 1657951532752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     }\n   \n     // Create a Tutorial\n     const tutorial = {\n-      title: req.body.title,\n+      jobId: req.body.title,\n       description: req.body.description,\n       published: req.body.published ? req.body.published : false\n     };\n   \n"
+                },
+                {
+                    "date": 1657951544993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,10 @@\n     }\n   \n     // Create a Tutorial\n     const tutorial = {\n-      jobId: req.body.title,\n-      description: req.body.description,\n-      published: req.body.published ? req.body.published : false\n+      jobId: req.body.jobId,\n+      description: req.body.description\n     };\n   \n     // Save Tutorial in the database\n     Tutorial.create(tutorial)\n"
+                },
+                {
+                    "date": 1657951557153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   \n     // Create a Tutorial\n     const tutorial = {\n       jobId: req.body.jobId,\n-      description: req.body.description\n+      context: req.body.description\n     };\n   \n     // Save Tutorial in the database\n     Tutorial.create(tutorial)\n"
+                },
+                {
+                    "date": 1657951562628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       context: req.body.description\n     };\n   \n     // Save Tutorial in the database\n-    Tutorial.create(tutorial)\n+    Notes.create(tutorial)\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657951574932,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,15 +13,15 @@\n       return;\n     }\n   \n     // Create a Tutorial\n-    const tutorial = {\n+    const note = {\n       jobId: req.body.jobId,\n       context: req.body.description\n     };\n   \n     // Save Tutorial in the database\n-    Notes.create(tutorial)\n+    Notes.create(note)\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657951580419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,8 @@\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n-            err.message || \"Some error occurred while creating the Tutorial.\"\n+            err.message || \"Some error occurred while creating the note.\"\n         });\n       });\n   };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951610043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,32 @@\n           message:\n             err.message || \"Some error occurred while creating the note.\"\n         });\n       });\n-  };\n\\ No newline at end of file\n+  };\n+\n+\n+  // Update a Tutorial by the id in the request\n+exports.update = (req, res) => {\n+    const id = req.params.id;\n+  \n+    Tutorial.update(req.body, {\n+      where: { id: id }\n+    })\n+      .then(num => {\n+        if (num == 1) {\n+          res.send({\n+            message: \"Tutorial was updated successfully.\"\n+          });\n+        } else {\n+          res.send({\n+            message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n+          });\n+        }\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message: \"Error updating Tutorial with id=\" + id\n+        });\n+      });\n+  };\n+  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951624721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \n \n   // Update a Tutorial by the id in the request\n exports.update = (req, res) => {\n-    const id = req.params.id;\n+    const id = req.params.jobId;\n   \n     Tutorial.update(req.body, {\n       where: { id: id }\n     })\n"
+                },
+                {
+                    "date": 1657951629921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n exports.update = (req, res) => {\n     const id = req.params.jobId;\n   \n     Tutorial.update(req.body, {\n-      where: { id: id }\n+      where: { jobId: id }\n     })\n       .then(num => {\n         if (num == 1) {\n           res.send({\n"
+                },
+                {
+                    "date": 1657951636709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n     })\n       .then(num => {\n         if (num == 1) {\n           res.send({\n-            message: \"Tutorial was updated successfully.\"\n+            message: \"jobId was updated successfully.\"\n           });\n         } else {\n           res.send({\n             message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n"
+                },
+                {
+                    "date": 1657951643226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,15 +46,15 @@\n             message: \"jobId was updated successfully.\"\n           });\n         } else {\n           res.send({\n-            message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n+            message: `Cannot update Tutorial with id=${id}. Maybe jobId was not found or req.body is empty!`\n           });\n         }\n       })\n       .catch(err => {\n         res.status(500).send({\n-          message: \"Error updating Tutorial with id=\" + id\n+          message: \"Error updating jobId with id=\" + id\n         });\n       });\n   };\n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951976826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,26 @@\n         });\n       });\n   };\n \n+  // Retrieve all Jobs from the database.\n+exports.findAll = (req, res) => {\n+    const name = req.query.name;\n+    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n+  \n+    Jobs.findAll({ where: condition })\n+      .then(data => {\n+        res.send(data);\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message:\n+            err.message || \"Some error occurred while retrieving Jobs.\"\n+        });\n+      });\n+  };\n \n+\n   // Update a Tutorial by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.jobId;\n   \n"
+                },
+                {
+                    "date": 1657952014635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n   };\n \n   // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n-    const name = req.query.name;\n-    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n+    const jobId = req.query.jobId;\n+    var condition = jobId ? { jobId: { [Op.like]: `%${jobId}%` } } : null;\n   \n     Jobs.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657952023589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n exports.findAll = (req, res) => {\n     const jobId = req.query.jobId;\n     var condition = jobId ? { jobId: { [Op.like]: `%${jobId}%` } } : null;\n   \n-    Jobs.findAll({ where: condition })\n+    Notes.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657952034973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n-            err.message || \"Some error occurred while retrieving Jobs.\"\n+            err.message || \"Some error occurred while retrieving Notes.\"\n         });\n       });\n   };\n \n"
+                },
+                {
+                    "date": 1657952091288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n const Notes = db.notes;\n const Op = db.Sequelize.Op;\n \n \n-// Create and Save a new Tutorial\n+// Create and Save a new Notes\n exports.create = (req, res) => {\n     // Validate request\n     if (!req.body.jobId) {\n       res.status(400).send({\n@@ -12,15 +12,15 @@\n       });\n       return;\n     }\n   \n-    // Create a Tutorial\n+    // Create a Notes\n     const note = {\n       jobId: req.body.jobId,\n       context: req.body.description\n     };\n   \n-    // Save Tutorial in the database\n+    // Save Notes in the database\n     Notes.create(note)\n       .then(data => {\n         res.send(data);\n       })\n"
+                },
+                {
+                    "date": 1657952096366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n       });\n   };\n \n \n-  // Update a Tutorial by the id in the request\n+  // Update a Notes by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.jobId;\n   \n     Tutorial.update(req.body, {\n"
+                },
+                {
+                    "date": 1657952103422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n       });\n   };\n \n \n-  // Update a Notes by the id in the request\n+  // Update a Note by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.jobId;\n   \n     Tutorial.update(req.body, {\n@@ -63,9 +63,9 @@\n             message: \"jobId was updated successfully.\"\n           });\n         } else {\n           res.send({\n-            message: `Cannot update Tutorial with id=${id}. Maybe jobId was not found or req.body is empty!`\n+            message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`\n           });\n         }\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657952118328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n     })\n       .then(num => {\n         if (num == 1) {\n           res.send({\n-            message: \"jobId was updated successfully.\"\n+            message: \"jobs was updated successfully.\"\n           });\n         } else {\n           res.send({\n             message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`\n"
+                },
+                {
+                    "date": 1657952845964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n exports.create = (req, res) => {\n     // Validate request\n     if (!req.body.jobId) {\n       res.status(400).send({\n-        message: \"Content can not be empty!\"\n+        message: \"jobId can not be empty!\"\n       });\n       return;\n     }\n   \n"
+                },
+                {
+                    "date": 1657954806343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \n   // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const jobId = req.query.jobId;\n-    var condition = jobId ? { jobId: { [Op.like]: `%${jobId}%` } } : null;\n+    var condition = jobId ? { jobId: { [Op.eq]: `%${jobId}%` } } : null;\n   \n     Notes.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657954977295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   // Update a Note by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.jobId;\n   \n-    Tutorial.update(req.body, {\n+    Notes.update(req.body, {\n       where: { jobId: id }\n     })\n       .then(num => {\n         if (num == 1) {\n"
+                },
+                {
+                    "date": 1657955195423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \n \n   // Update a Note by the id in the request\n exports.update = (req, res) => {\n-    const id = req.params.jobId;\n+    const id = req.params.id;\n   \n     Notes.update(req.body, {\n       where: { jobId: id }\n     })\n"
+                },
+                {
+                    "date": 1657961829749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       });\n       return;\n     }\n   \n-    // Create a Notes\n+    // Create a Note\n     const note = {\n       jobId: req.body.jobId,\n       context: req.body.description\n     };\n"
+                },
+                {
+                    "date": 1657961841922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n       });\n   };\n \n \n-  // Update a Note by the id in the request\n+// Update a Note by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.id;\n   \n     Notes.update(req.body, {\n"
+                },
+                {
+                    "date": 1657962632470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,77 +1,72 @@\n const db = require(\"../models\");\n const Notes = db.notes;\n const Op = db.Sequelize.Op;\n \n-\n // Create and Save a new Notes\n exports.create = (req, res) => {\n-    // Validate request\n-    if (!req.body.jobId) {\n-      res.status(400).send({\n-        message: \"jobId can not be empty!\"\n-      });\n-      return;\n-    }\n-  \n-    // Create a Note\n-    const note = {\n-      jobId: req.body.jobId,\n-      context: req.body.description\n-    };\n-  \n-    // Save Notes in the database\n-    Notes.create(note)\n-      .then(data => {\n-        res.send(data);\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message:\n-            err.message || \"Some error occurred while creating the note.\"\n-        });\n-      });\n+  // Validate request\n+  if (!req.body.jobId) {\n+    res.status(400).send({\n+      message: \"jobId can not be empty!\",\n+    });\n+    return;\n+  }\n+\n+  // Create a Note\n+  const note = {\n+    jobId: req.body.jobId,\n+    context: req.body.description,\n   };\n \n-  // Retrieve all Jobs from the database.\n+  // Save Notes in the database\n+  Notes.create(note)\n+    .then((data) => {\n+      res.send(data);\n+    })\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: err.message || \"Some error occurred while creating the note.\",\n+      });\n+    });\n+};\n+\n+// Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n-    const jobId = req.query.jobId;\n-    var condition = jobId ? { jobId: { [Op.eq]: `%${jobId}%` } } : null;\n-  \n-    Notes.findAll({ where: condition })\n-      .then(data => {\n-        res.send(data);\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message:\n-            err.message || \"Some error occurred while retrieving Notes.\"\n-        });\n+  const jobId = req.query.jobId;\n+  var condition = jobId ? { jobId: { [Op.eq]: `%${jobId}%` } } : null;\n+\n+  Notes.findAll({ where: condition })\n\\ No newline at end of file\n+    .then((data) => {\n+      res.send(data);\n+    })\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: err.message || \"Some error occurred while retrieving Notes.\",\n       });\n-  };\n+    });\n+};\n \n-\n // Update a Note by the id in the request\n exports.update = (req, res) => {\n-    const id = req.params.id;\n-  \n-    Notes.update(req.body, {\n-      where: { jobId: id }\n+  const id = req.params.id;\n+\n+  Notes.update(req.body, {\n+    where: { jobId: id },\n+  })\n+    .then((num) => {\n+      if (num == 1) {\n+        res.send({\n+          message: \"jobs was updated successfully.\",\n+        });\n+      } else {\n+        res.send({\n+          message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`,\n+        });\n+      }\n     })\n-      .then(num => {\n-        if (num == 1) {\n-          res.send({\n-            message: \"jobs was updated successfully.\"\n-          });\n-        } else {\n-          res.send({\n-            message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`\n-          });\n-        }\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message: \"Error updating jobId with id=\" + id\n-        });\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: \"Error updating jobId with id=\" + id,\n       });\n-  };\n-  \n+    });\n+};\n"
+                },
+                {
+                    "date": 1658026048158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n   })\n     .then((num) => {\n       if (num == 1) {\n         res.send({\n-          message: \"jobs was updated successfully.\",\n+          message: \"notes was updated successfully.\",\n         });\n       } else {\n         res.send({\n           message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`,\n@@ -68,5 +68,5 @@\n       res.status(500).send({\n         message: \"Error updating jobId with id=\" + id,\n       });\n     });\n-};\n\\ No newline at end of file\n+};\n"
+                },
+                {
+                    "date": 1658026452109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,14 +50,14 @@\n exports.update = (req, res) => {\n   const id = req.params.id;\n \n   Notes.update(req.body, {\n-    where: { jobId: id },\n+    where: { id: id },\n   })\n     .then((num) => {\n       if (num == 1) {\n         res.send({\n-          message: \"notes was updated successfully.\",\n+          message: \"Notes was updated successfully.\",\n         });\n       } else {\n         res.send({\n           message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`,\n"
+                },
+                {
+                    "date": 1658028224267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n           message: \"Notes was updated successfully.\",\n         });\n       } else {\n         res.send({\n-          message: `Cannot update Notes with id=${id}. Maybe jobId was not found or req.body is empty!`,\n+          message: `Cannot update Notes with id=${id}. Maybe note was not found or req.body is empty!`,\n         });\n       }\n     })\n     .catch((err) => {\n"
+                }
+            ],
+            "date": 1657951433761,
+            "name": "Commit-0",
+            "content": "const db = require(\"../models\");\nconst Jobs = db.jobs;\nconst Op = db.Sequelize.Op;"
+        }
+    ]
+}

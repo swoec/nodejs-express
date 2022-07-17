@@ -1,0 +1,33 @@
+{
+  "name": "fergus",
+  "version": "1.0.0",
+  "description": "Fergus",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./app/test -R spec"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest",
+    "api",
+    "sequelize",
+    "mysql"
+  ],
+  "author": "Alex Wang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "chai-sorted": "^0.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.0.2",
+    "request": "^2.65.0",
+    "sequelize": "^6.21.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3",
+    "proxyquire": "^1.7.3"
+  }
+}

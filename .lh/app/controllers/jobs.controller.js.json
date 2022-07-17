@@ -1,0 +1,274 @@
+{
+    "sourceFile": "app/controllers/jobs.controller.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 64,
+            "patches": [
+                {
+                    "date": 1657951115480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657951134238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n const db = require(\"../models\");\n-const Tutorial = db.tutorials;\n+const Jobs = db.jobs;\n const Op = db.Sequelize.Op;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951258185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,23 @@\n const db = require(\"../models\");\n const Jobs = db.jobs;\n-const Op = db.Sequelize.Op;\n\\ No newline at end of file\n+const Op = db.Sequelize.Op;\n+\n+\n+\n+\n+// Retrieve all Tutorials from the database.\n+exports.findAll = (req, res) => {\n+    const title = req.query.title;\n+    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;\n+  \n+    Tutorial.findAll({ where: condition })\n+      .then(data => {\n+        res.send(data);\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message:\n+            err.message || \"Some error occurred while retrieving tutorials.\"\n+        });\n+      });\n+  };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951288829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,5 +19,31 @@\n           message:\n             err.message || \"Some error occurred while retrieving tutorials.\"\n         });\n       });\n+  };\n+\n+\n+  // Update a Tutorial by the id in the request\n+exports.update = (req, res) => {\n+    const id = req.params.id;\n+  \n+    Tutorial.update(req.body, {\n+      where: { id: id }\n+    })\n+      .then(num => {\n+        if (num == 1) {\n+          res.send({\n+            message: \"Tutorial was updated successfully.\"\n+          });\n+        } else {\n+          res.send({\n+            message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n+          });\n+        }\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message: \"Error updating Tutorial with id=\" + id\n+        });\n+      });\n   };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951329637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n \n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n-    const title = req.query.title;\n-    var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;\n+    const name = req.query.name;\n+    var condition = name ? { title: { [Op.like]: `%${title}%` } } : null;\n   \n     Tutorial.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657951338213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n \n // Retrieve all Tutorials from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n-    var condition = name ? { title: { [Op.like]: `%${title}%` } } : null;\n+    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n     Tutorial.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657951346982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Tutorial.findAll({ where: condition })\n+    Jobs.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657951353604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n-            err.message || \"Some error occurred while retrieving tutorials.\"\n+            err.message || \"Some error occurred while retrieving Jobs.\"\n         });\n       });\n   };\n \n"
+                },
+                {
+                    "date": 1657951361013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n \n \n \n-// Retrieve all Tutorials from the database.\n+// Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n@@ -22,9 +22,9 @@\n       });\n   };\n \n \n-  // Update a Tutorial by the id in the request\n+  // Update a Jobs by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.id;\n   \n     Tutorial.update(req.body, {\n"
+                },
+                {
+                    "date": 1657951372188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   // Update a Jobs by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.id;\n   \n-    Tutorial.update(req.body, {\n+    Jobs.update(req.body, {\n       where: { id: id }\n     })\n       .then(num => {\n         if (num == 1) {\n"
+                },
+                {
+                    "date": 1657951390911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     })\n       .then(num => {\n         if (num == 1) {\n           res.send({\n-            message: \"Tutorial was updated successfully.\"\n+            message: \"Jobs was updated successfully.\"\n           });\n         } else {\n           res.send({\n             message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n"
+                },
+                {
+                    "date": 1657951396156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n             message: \"Jobs was updated successfully.\"\n           });\n         } else {\n           res.send({\n-            message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`\n+            message: `Cannot update Jobs with id=${id}. Maybe Jobs was not found or req.body is empty!`\n           });\n         }\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657951401664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,8 @@\n         }\n       })\n       .catch(err => {\n         res.status(500).send({\n-          message: \"Error updating Tutorial with id=\" + id\n+          message: \"Error updating Jobs with id=\" + id\n         });\n       });\n   };\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657952150201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,39 @@\n const Jobs = db.jobs;\n const Op = db.Sequelize.Op;\n \n \n+// Create and Save a new Tutorial\n+exports.create = (req, res) => {\n+    // Validate request\n+    if (!req.body.title) {\n+      res.status(400).send({\n+        message: \"Content can not be empty!\"\n+      });\n+      return;\n+    }\n+  \n+    // Create a Tutorial\n+    const tutorial = {\n+      title: req.body.title,\n+      description: req.body.description,\n+      published: req.body.published ? req.body.published : false\n+    };\n+  \n+    // Save Tutorial in the database\n+    Tutorial.create(tutorial)\n+      .then(data => {\n+        res.send(data);\n+      })\n+      .catch(err => {\n+        res.status(500).send({\n+          message:\n+            err.message || \"Some error occurred while creating the Tutorial.\"\n+        });\n+      });\n+  };\n+  \n \n-\n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n"
+                },
+                {
+                    "date": 1657952172056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,16 +13,16 @@\n       return;\n     }\n   \n     // Create a Tutorial\n-    const tutorial = {\n+    const job = {\n       title: req.body.title,\n       description: req.body.description,\n       published: req.body.published ? req.body.published : false\n     };\n   \n     // Save Tutorial in the database\n-    Tutorial.create(tutorial)\n+    Jobs.create(job)\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657952179554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,17 +19,17 @@\n       description: req.body.description,\n       published: req.body.published ? req.body.published : false\n     };\n   \n-    // Save Tutorial in the database\n+    // Save job in the database\n     Jobs.create(job)\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n-            err.message || \"Some error occurred while creating the Tutorial.\"\n+            err.message || \"Some error occurred while creating the job.\"\n         });\n       });\n   };\n   \n"
+                },
+                {
+                    "date": 1657952221448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     }\n   \n     // Create a Tutorial\n     const job = {\n-      title: req.body.title,\n+        userId: req.body.userId,\n       description: req.body.description,\n       published: req.body.published ? req.body.published : false\n     };\n   \n"
+                },
+                {
+                    "date": 1657952250809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n   \n     // Create a Tutorial\n     const job = {\n         userId: req.body.userId,\n-      description: req.body.description,\n-      published: req.body.published ? req.body.published : false\n+      name: req.body.name,\n+      status:\n     };\n   \n     // Save job in the database\n     Jobs.create(job)\n"
+                },
+                {
+                    "date": 1657952566662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n const db = require(\"../models\");\n+const Constants = require('../config/constants.js')\n const Jobs = db.jobs;\n const Op = db.Sequelize.Op;\n \n \n"
+                },
+                {
+                    "date": 1657952585261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     // Create a Tutorial\n     const job = {\n         userId: req.body.userId,\n       name: req.body.name,\n-      status:\n+      status: Constants.JOB_STATUS.SCHEDULED\n     };\n   \n     // Save job in the database\n     Jobs.create(job)\n"
+                },
+                {
+                    "date": 1657952595657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     }\n   \n     // Create a Tutorial\n     const job = {\n-        userId: req.body.userId,\n+      userId: req.body.userId,\n       name: req.body.name,\n       status: Constants.JOB_STATUS.SCHEDULED\n     };\n   \n"
+                },
+                {
+                    "date": 1657952602026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       });\n       return;\n     }\n   \n-    // Create a Tutorial\n+    // Create a job\n     const job = {\n       userId: req.body.userId,\n       name: req.body.name,\n       status: Constants.JOB_STATUS.SCHEDULED\n"
+                },
+                {
+                    "date": 1657952610772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n // Create and Save a new Tutorial\n exports.create = (req, res) => {\n     // Validate request\n-    if (!req.body.title) {\n+    if (!req.body.userId) {\n       res.status(400).send({\n         message: \"Content can not be empty!\"\n       });\n       return;\n"
+                },
+                {
+                    "date": 1657952617471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n exports.create = (req, res) => {\n     // Validate request\n     if (!req.body.userId) {\n       res.status(400).send({\n-        message: \"Content can not be empty!\"\n+        message: \"userId can not be empty!\"\n       });\n       return;\n     }\n   \n"
+                },
+                {
+                    "date": 1657953588132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n \n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n+    const ordered = req.query.ordered;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n     Jobs.findAll({ where: condition })\n       .then(data => {\n"
+                },
+                {
+                    "date": 1657953866139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition })\n+    Jobs.findAll({ where: condition ,order:['id','DESC']})\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657954017265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition ,order:['id','DESC']})\n+    Jobs.findAll({ where: condition ,order:['id',ordered? ordered: \"DESC\"]})\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657954104428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition ,order:['id',ordered? ordered: \"DESC\"]})\n+    Jobs.findAll({ where: condition })\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657954238651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition })\n+    Jobs.findAll({ where: condition ,order:[['id',ordered? ordered: \"DESC\"]]})\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657954303056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n+    console.log('ordered')\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered? ordered: \"DESC\"]]})\n       .then(data => {\n"
+                },
+                {
+                    "date": 1657954361077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n-    console.log('ordered')\n+    \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered? ordered: \"DESC\"]]})\n       .then(data => {\n"
+                },
+                {
+                    "date": 1657954454090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,12 +38,12 @@\n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n-    \n+\n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition ,order:[['id',ordered? ordered: \"DESC\"]]})\n+    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered: \"DESC\"]]})\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n"
+                },
+                {
+                    "date": 1657954480537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n   \n-    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered: \"DESC\"]]})\n+    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n         res.send(data);\n       })\n       .catch(err => {\n@@ -54,9 +54,9 @@\n       });\n   };\n \n \n-  // Update a Jobs by the id in the request\n+// Update a Jobs by the id in the request\n exports.update = (req, res) => {\n     const id = req.params.id;\n   \n     Jobs.update(req.body, {\n"
+                },
+                {
+                    "date": 1657958034346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n const db = require(\"../models\");\n const Constants = require('../config/constants.js')\n const Jobs = db.jobs;\n+const Users =db.user;\n const Op = db.Sequelize.Op;\n \n \n // Create and Save a new Tutorial\n"
+                },
+                {
+                    "date": 1657958194745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   };\n   \n \n // Retrieve all Jobs from the database.\n-exports.findAll = (req, res) => {\n+exports.findAll = (req, res) => async {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n"
+                },
+                {
+                    "date": 1657958215058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   };\n   \n \n // Retrieve all Jobs from the database.\n-exports.findAll = (req, res) => async {\n+exports.findAll = (req, res) =>  {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n"
+                },
+                {
+                    "date": 1657958223616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   };\n   \n \n // Retrieve all Jobs from the database.\n-exports.findAll = (req, res) =>  {\n+exports.findAll = async (req, res) =>  {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n"
+                },
+                {
+                    "date": 1657958263889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,10 @@\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n+\n+    let users = await Users.findAll({});\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657958302372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,12 @@\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n \n     let users = await Users.findAll({});\n+    let UserMap = new Map();\n+    if(users && users.length > 0) {\n+        \n+    }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n         res.send(data);\n"
+                },
+                {
+                    "date": 1657958339428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,11 @@\n \n     let users = await Users.findAll({});\n     let UserMap = new Map();\n     if(users && users.length > 0) {\n-        \n+        for(let u of users) {\n+            UserMap.set(u.id,u);\n+        }\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n"
+                },
+                {
+                    "date": 1657958435525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,13 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n+        if(data && data.length > 0) {\n+            data.map(d => {\n+                let u = UserMap.get(d.userId);\n+            })\n+        }\n         res.send(data);\n       })\n       .catch(err => {\n         res.status(500).send({\n"
+                },
+                {
+                    "date": 1657958484468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,12 @@\n       .then(data => {\n         if(data && data.length > 0) {\n             data.map(d => {\n                 let u = UserMap.get(d.userId);\n+                d.userName= u.name;\n+                d.phone = u.phone;\n+                d.address = u.address;\n+                return d;\n             })\n         }\n         res.send(data);\n       })\n"
+                },
+                {
+                    "date": 1657958602245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,10 +52,11 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n+        let ret = [];\n         if(data && data.length > 0) {\n-            data.map(d => {\n+          let ret =   data.map(d => {\n                 let u = UserMap.get(d.userId);\n                 d.userName= u.name;\n                 d.phone = u.phone;\n                 d.address = u.address;\n"
+                },
+                {
+                    "date": 1657958613371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,17 +54,17 @@\n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n         let ret = [];\n         if(data && data.length > 0) {\n-          let ret =   data.map(d => {\n+          ret =   data.map(d => {\n                 let u = UserMap.get(d.userId);\n                 d.userName= u.name;\n                 d.phone = u.phone;\n                 d.address = u.address;\n                 return d;\n             })\n         }\n-        res.send(data);\n+        res.send(ret);\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n"
+                },
+                {
+                    "date": 1657958756857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,9 @@\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n                 let u = UserMap.get(d.userId);\n                 d.userName= u.name;\n+                console.log('------>>>>'+u.name)\n                 d.phone = u.phone;\n                 d.address = u.address;\n                 return d;\n             })\n"
+                },
+                {
+                    "date": 1657958962929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,8 +63,9 @@\n                 d.address = u.address;\n                 return d;\n             })\n         }\n+        console.log(JSON.stringify(ret));\n         res.send(ret);\n       })\n       .catch(err => {\n         res.status(500).send({\n"
+                },
+                {
+                    "date": 1657959018743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,8 +60,9 @@\n                 d.userName= u.name;\n                 console.log('------>>>>'+u.name)\n                 d.phone = u.phone;\n                 d.address = u.address;\n+                console.log(JSON.stringify(d));\n                 return d;\n             })\n         }\n         console.log(JSON.stringify(ret));\n"
+                },
+                {
+                    "date": 1657959031447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n                 d.userName= u.name;\n                 console.log('------>>>>'+u.name)\n                 d.phone = u.phone;\n                 d.address = u.address;\n-                console.log(JSON.stringify(d));\n+                console.log('*****------>>>>'+JSON.stringify(d));\n                 return d;\n             })\n         }\n         console.log(JSON.stringify(ret));\n"
+                },
+                {
+                    "date": 1657959095046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n                 let u = UserMap.get(d.userId);\n                 d.userName= u.name;\n-                console.log('------>>>>'+u.name)\n+                console.log('------>>>>'+u.name+\"----->>\"+u.phone+ \"=====>\" +)\n                 d.phone = u.phone;\n                 d.address = u.address;\n                 console.log('*****------>>>>'+JSON.stringify(d));\n                 return d;\n"
+                },
+                {
+                    "date": 1657959103875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n                 let u = UserMap.get(d.userId);\n                 d.userName= u.name;\n-                console.log('------>>>>'+u.name+\"----->>\"+u.phone+ \"=====>\" +)\n+                console.log('------>>>>'+u.name+\"----->>\"+u.phone+ \"=====>\" +u.address);\n                 d.phone = u.phone;\n                 d.address = u.address;\n                 console.log('*****------>>>>'+JSON.stringify(d));\n                 return d;\n"
+                },
+                {
+                    "date": 1657959644168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,13 @@\n             UserMap.set(u.id,u);\n         }\n     }\n   \n-    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n+    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n+    include: [{\n+        model: Models.Orders,\n+        where: {}\n+    }]})\n       .then(data => {\n         let ret = [];\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n"
+                },
+                {
+                    "date": 1657959657355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n     include: [{\n-        model: Models.Orders,\n+        model: users,\n         where: {}\n     }]})\n       .then(data => {\n         let ret = [];\n"
+                },
+                {
+                    "date": 1657959742973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n     include: [{\n-        model: users,\n+        model: db.user,\n         where: {}\n     }]})\n       .then(data => {\n         let ret = [];\n"
+                },
+                {
+                    "date": 1657959772321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n     include: [{\n-        model: db.user,\n+        model: model.user,\n         where: {}\n     }]})\n       .then(data => {\n         let ret = [];\n"
+                },
+                {
+                    "date": 1657959822822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n     include: [{\n-        model: model.user,\n+        model: db.user,\n         where: {}\n     }]})\n       .then(data => {\n         let ret = [];\n"
+                },
+                {
+                    "date": 1657959861015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,13 +50,9 @@\n             UserMap.set(u.id,u);\n         }\n     }\n   \n-    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]], \n-    include: [{\n-        model: db.user,\n-        where: {}\n-    }]})\n+    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n       .then(data => {\n         let ret = [];\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n"
+                },
+                {
+                    "date": 1657961370047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,12 @@\n             UserMap.set(u.id,u);\n         }\n     }\n   \n-    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]]})\n+    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n+        model: Captain,\n+        as: 'leader'\n+      }})\n       .then(data => {\n         let ret = [];\n         if(data && data.length > 0) {\n           ret =   data.map(d => {\n"
+                },
+                {
+                    "date": 1657961389627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,9 @@\n         }\n     }\n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n-        model: Captain,\n-        as: 'leader'\n+        model: Users\n       }})\n       .then(data => {\n         let ret = [];\n         if(data && data.length > 0) {\n"
+                },
+                {
+                    "date": 1657961448199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,34 +42,16 @@\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n \n-    let users = await Users.findAll({});\n-    let UserMap = new Map();\n-    if(users && users.length > 0) {\n-        for(let u of users) {\n-            UserMap.set(u.id,u);\n-        }\n-    }\n+   \n   \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n         model: Users\n       }})\n       .then(data => {\n-        let ret = [];\n-        if(data && data.length > 0) {\n-          ret =   data.map(d => {\n-                let u = UserMap.get(d.userId);\n-                d.userName= u.name;\n-                console.log('------>>>>'+u.name+\"----->>\"+u.phone+ \"=====>\" +u.address);\n-                d.phone = u.phone;\n-                d.address = u.address;\n-                console.log('*****------>>>>'+JSON.stringify(d));\n-                return d;\n-            })\n-        }\n-        console.log(JSON.stringify(ret));\n-        res.send(ret);\n+    \n+        res.send(data);\n       })\n       .catch(err => {\n         res.status(500).send({\n           message:\n"
+                },
+                {
+                    "date": 1657961453730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,8 @@\n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n         model: Users\n       }})\n       .then(data => {\n-    \n         res.send(data);\n       })\n       .catch(err => {\n         res.status(500).send({\n"
+                },
+                {
+                    "date": 1657961461749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,10 +42,8 @@\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n \n-   \n-  \n     Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n         model: Users\n       }})\n       .then(data => {\n"
+                },
+                {
+                    "date": 1657961471513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   };\n   \n \n // Retrieve all Jobs from the database.\n-exports.findAll = async (req, res) =>  {\n+exports.findAll = (req, res) =>  {\n     const name = req.query.name;\n     const ordered = req.query.ordered;\n \n     var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n"
+                },
+                {
+                    "date": 1657961673603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,27 +36,30 @@\n   };\n   \n \n // Retrieve all Jobs from the database.\n-exports.findAll = (req, res) =>  {\n-    const name = req.query.name;\n-    const ordered = req.query.ordered;\n+exports.findAll = (req, res) => {\n+  const name = req.query.name;\n+  const ordered = req.query.ordered;\n \n-    var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n+  var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;\n \n-    Jobs.findAll({ where: condition ,order:[['id',ordered?ordered : \"DESC\"]],include: {\n-        model: Users\n-      }})\n-      .then(data => {\n-        res.send(data);\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message:\n-            err.message || \"Some error occurred while retrieving Jobs.\"\n-        });\n+  Jobs.findAll({\n+    where: condition,\n+    order: [[\"id\", ordered ? ordered : \"DESC\"]],\n+    include: {\n+      model: Users,\n+    },\n+  })\n+    .then((data) => {\n+      res.send(data);\n+    })\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: err.message || \"Some error occurred while retrieving Jobs.\",\n       });\n-  };\n+    });\n+};\n \n \n // Update a Jobs by the id in the request\n exports.update = (req, res) => {\n"
+                },
+                {
+                    "date": 1657962612293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,42 +1,39 @@\n const db = require(\"../models\");\n-const Constants = require('../config/constants.js')\n+const Constants = require(\"../config/constants.js\");\n const Jobs = db.jobs;\n-const Users =db.user;\n+const Users = db.user;\n const Op = db.Sequelize.Op;\n \n-\n // Create and Save a new Tutorial\n exports.create = (req, res) => {\n-    // Validate request\n-    if (!req.body.userId) {\n-      res.status(400).send({\n-        message: \"userId can not be empty!\"\n-      });\n-      return;\n-    }\n-  \n-    // Create a job\n-    const job = {\n-      userId: req.body.userId,\n-      name: req.body.name,\n-      status: Constants.JOB_STATUS.SCHEDULED\n-    };\n-  \n-    // Save job in the database\n-    Jobs.create(job)\n-      .then(data => {\n-        res.send(data);\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message:\n-            err.message || \"Some error occurred while creating the job.\"\n-        });\n-      });\n+  // Validate request\n+  if (!req.body.userId) {\n+    res.status(400).send({\n+      message: \"userId can not be empty!\",\n+    });\n+    return;\n+  }\n+\n+  // Create a job\n+  const job = {\n+    userId: req.body.userId,\n+    name: req.body.name,\n+    status: Constants.JOB_STATUS.SCHEDULED,\n   };\n-  \n \n+  // Save job in the database\n+  Jobs.create(job)\n+    .then((data) => {\n+      res.send(data);\n+    })\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: err.message || \"Some error occurred while creating the job.\",\n+      });\n+    });\n+};\n+\n // Retrieve all Jobs from the database.\n exports.findAll = (req, res) => {\n   const name = req.query.name;\n   const ordered = req.query.ordered;\n@@ -59,29 +56,28 @@\n       });\n     });\n };\n \n-\n // Update a Jobs by the id in the request\n exports.update = (req, res) => {\n-    const id = req.params.id;\n-  \n-    Jobs.update(req.body, {\n-      where: { id: id }\n+  const id = req.params.id;\n+\n+  Jobs.update(req.body, {\n+    where: { id: id },\n+  })\n+    .then((num) => {\n+      if (num == 1) {\n+        res.send({\n+          message: \"Jobs was updated successfully.\",\n+        });\n+      } else {\n+        res.send({\n+          message: `Cannot update Jobs with id=${id}. Maybe Jobs was not found or req.body is empty!`,\n+        });\n+      }\n     })\n-      .then(num => {\n-        if (num == 1) {\n\\ No newline at end of file\n-          res.send({\n-            message: \"Jobs was updated successfully.\"\n-          });\n-        } else {\n-          res.send({\n-            message: `Cannot update Jobs with id=${id}. Maybe Jobs was not found or req.body is empty!`\n-          });\n-        }\n-      })\n-      .catch(err => {\n-        res.status(500).send({\n-          message: \"Error updating Jobs with id=\" + id\n-        });\n+    .catch((err) => {\n+      res.status(500).send({\n+        message: \"Error updating Jobs with id=\" + id,\n       });\n-  };\n+    });\n+};\n"
+                },
+                {
+                    "date": 1657962875568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const Jobs = db.jobs;\n const Users = db.user;\n const Op = db.Sequelize.Op;\n \n-// Create and Save a new Tutorial\n+// Create and Save a new job\n exports.create = (req, res) => {\n   // Validate request\n   if (!req.body.userId) {\n     res.status(400).send({\n"
+                }
+            ],
+            "date": 1657951115480,
+            "name": "Commit-0",
+            "content": "const db = require(\"../models\");\nconst Tutorial = db.tutorials;\nconst Op = db.Sequelize.Op;"
+        }
+    ]
+}

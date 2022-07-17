@@ -1,0 +1,86 @@
+{
+    "sourceFile": "app/models/index.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1657948604104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657948617493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n db.sequelize = sequelize;\n \n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n+db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n-db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657948629909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,8 @@\n \n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n+db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n-db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657948643095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,7 +22,7 @@\n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n-db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n+db.user = require(\"./user.model.js\")(sequelize, Sequelize);\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657956967005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,11 @@\n db.Sequelize = Sequelize;\n db.sequelize = sequelize;\n \n db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n+db.user = require(\"./user.model.js\")(sequelize, Sequelize);\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n-db.user = require(\"./user.model.js\")(sequelize, Sequelize);\n \n+\n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961078159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,6 +24,9 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n+jobs.belongsTo(user, { foreignKey: 'owner_id' });\n+User.hasOne(Organization, { foreignKey: 'owner_id' });\n \n+\n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961086090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-jobs.belongsTo(user, { foreignKey: 'owner_id' });\n+jobs.belongsTo(user, { foreignKey: 'UserId' });\n User.hasOne(Organization, { foreignKey: 'owner_id' });\n \n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961101883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n jobs.belongsTo(user, { foreignKey: 'UserId' });\n-User.hasOne(Organization, { foreignKey: 'owner_id' });\n+user.hasOne(jobs, { foreignKey: 'owner_id' });\n \n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961146789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-jobs.belongsTo(user, { foreignKey: 'UserId' });\n-user.hasOne(jobs, { foreignKey: 'owner_id' });\n+jobs.belongsTo(user, { foreignKey: 'userId' });\n+user.hasOne(jobs, { foreignKey: 'userId' });\n \n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961177322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-jobs.belongsTo(user, { foreignKey: 'userId' });\n-user.hasOne(jobs, { foreignKey: 'userId' });\n+db.jobs.belongsTo(db.user, { foreignKey: 'userId' });\n+db.user.hasOne(db.jobs, { foreignKey: 'userId' });\n \n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1657961785688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n \n db.Sequelize = Sequelize;\n db.sequelize = sequelize;\n \n-db.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n db.user = require(\"./user.model.js\")(sequelize, Sequelize);\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n"
+                },
+                {
+                    "date": 1657962646214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n   pool: {\n     max: dbConfig.pool.max,\n     min: dbConfig.pool.min,\n     acquire: dbConfig.pool.acquire,\n-    idle: dbConfig.pool.idle\n-  }\n+    idle: dbConfig.pool.idle,\n+  },\n });\n \n const db = {};\n \n@@ -23,9 +23,8 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-db.jobs.belongsTo(db.user, { foreignKey: 'userId' });\n-db.user.hasOne(db.jobs, { foreignKey: 'userId' });\n+db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n+db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n \n-\n module.exports = db;\n"
+                },
+                {
+                    "date": 1658019372377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n-\n+// db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n+// db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n+// \n module.exports = db;\n"
+                },
+                {
+                    "date": 1658019586517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-// db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-// db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n-// \n+db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n+db.user.hasmany(db.jobs, { foreignKey: \"userId\" });\n+\n module.exports = db;\n"
+                },
+                {
+                    "date": 1658019710475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,7 +24,7 @@\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-db.user.hasmany(db.jobs, { foreignKey: \"userId\" });\n+db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1658019745513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n+// db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n+// db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1658019996803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,8 @@\n db.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n-// db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-// db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n+db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n+db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n \n module.exports = db;\n"
+                },
+                {
+                    "date": 1658020109105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,7 +24,7 @@\n db.notes = require(\"./notes.model.js\")(sequelize, Sequelize);\n db.status = require(\"./status.model.js\")(sequelize, Sequelize);\n \n db.jobs.belongsTo(db.user, { foreignKey: \"userId\" });\n-db.user.hasOne(db.jobs, { foreignKey: \"userId\" });\n+db.user.hasMany(db.jobs);\n \n module.exports = db;\n"
+                }
+            ],
+            "date": 1657948604104,
+            "name": "Commit-0",
+            "content": "const dbConfig = require(\"../config/db.config.js\");\n\nconst Sequelize = require(\"sequelize\");\nconst sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {\n  host: dbConfig.HOST,\n  dialect: dbConfig.dialect,\n  operatorsAliases: false,\n\n  pool: {\n    max: dbConfig.pool.max,\n    min: dbConfig.pool.min,\n    acquire: dbConfig.pool.acquire,\n    idle: dbConfig.pool.idle\n  }\n});\n\nconst db = {};\n\ndb.Sequelize = Sequelize;\ndb.sequelize = sequelize;\n\ndb.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\ndb.jobs = require(\"./jobs.model.js\")(sequelize, Sequelize);\ndb.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\ndb.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\ndb.tutorials = require(\"./tutorial.model.js\")(sequelize, Sequelize);\n\nmodule.exports = db;\n"
+        }
+    ]
+}

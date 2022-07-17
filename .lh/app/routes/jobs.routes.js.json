@@ -1,0 +1,54 @@
+{
+    "sourceFile": "app/routes/jobs.routes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1657951751956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657951760717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n module.exports = app => {\n-    const tutorials = require(\"../controllers/tutorial.controller.js\");\n+    const tutorials = require(\"../controllers/jobs.controller.js\");\n   \n     var router = require(\"express\").Router();\n   \n     // Create a new Tutorial\n"
+                },
+                {
+                    "date": 1657951826082,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,21 @@\n module.exports = app => {\n-    const tutorials = require(\"../controllers/jobs.controller.js\");\n+    const jobs = require(\"../controllers/jobs.controller.js\");\n   \n     var router = require(\"express\").Router();\n   \n-    // Create a new Tutorial\n-    router.post(\"/\", tutorials.create);\n-  \n+    \n     // Retrieve all Tutorials\n-    router.get(\"/\", tutorials.findAll);\n+    router.get(\"/\", jobs.findAll);\n   \n     // Retrieve all published Tutorials\n-    router.get(\"/published\", tutorials.findAllPublished);\n+    router.get(\"/published\", jobs.findAllPublished);\n   \n-    // Retrieve a single Tutorial with id\n-    router.get(\"/:id\", tutorials.findOne);\n-  \n+    \n     // Update a Tutorial with id\n-    router.put(\"/:id\", tutorials.update);\n+    router.put(\"/:id\", jobs.update);\n   \n-    // Delete a Tutorial with id\n-    router.delete(\"/:id\", tutorials.delete);\n+    \n   \n-    // Delete all Tutorials\n-    router.delete(\"/\", tutorials.deleteAll);\n-  \n     app.use('/api/tutorials', router);\n   };\n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951837023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,7 +15,7 @@\n     router.put(\"/:id\", jobs.update);\n   \n     \n   \n-    app.use('/api/tutorials', router);\n+    app.use('/api/jobs', router);\n   };\n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657951847007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,20 +2,16 @@\n     const jobs = require(\"../controllers/jobs.controller.js\");\n   \n     var router = require(\"express\").Router();\n   \n-    \n     // Retrieve all Tutorials\n     router.get(\"/\", jobs.findAll);\n   \n     // Retrieve all published Tutorials\n     router.get(\"/published\", jobs.findAllPublished);\n   \n-    \n     // Update a Tutorial with id\n     router.put(\"/:id\", jobs.update);\n   \n-    \n-  \n     app.use('/api/jobs', router);\n   };\n   \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657953016519,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,11 @@\n     const jobs = require(\"../controllers/jobs.controller.js\");\n   \n     var router = require(\"express\").Router();\n   \n+    // Create a new Tutorial\n+    router.post(\"/\", tutorials.create);\n+\n     // Retrieve all Tutorials\n     router.get(\"/\", jobs.findAll);\n   \n     // Retrieve all published Tutorials\n"
+                },
+                {
+                    "date": 1657953036675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,14 @@\n     const jobs = require(\"../controllers/jobs.controller.js\");\n   \n     var router = require(\"express\").Router();\n   \n-    // Create a new Tutorial\n-    router.post(\"/\", tutorials.create);\n+    // Create a new jobs\n+    router.post(\"/\", jobs.create);\n \n-    // Retrieve all Tutorials\n+    // Retrieve all jobs\n     router.get(\"/\", jobs.findAll);\n   \n-    // Retrieve all published Tutorials\n-    router.get(\"/published\", jobs.findAllPublished);\n-  \n     // Update a Tutorial with id\n     router.put(\"/:id\", jobs.update);\n   \n     app.use('/api/jobs', router);\n"
+                },
+                {
+                    "date": 1657953042359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n     // Retrieve all jobs\n     router.get(\"/\", jobs.findAll);\n   \n-    // Update a Tutorial with id\n+    // Update a jobs with id\n     router.put(\"/:id\", jobs.update);\n   \n     app.use('/api/jobs', router);\n   };\n"
+                },
+                {
+                    "date": 1657962704908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,16 @@\n-module.exports = app => {\n-    const jobs = require(\"../controllers/jobs.controller.js\");\n-  \n-    var router = require(\"express\").Router();\n-  \n-    // Create a new jobs\n-    router.post(\"/\", jobs.create);\n+module.exports = (app) => {\n+  const jobs = require(\"../controllers/jobs.controller.js\");\n \n-    // Retrieve all jobs\n-    router.get(\"/\", jobs.findAll);\n-  \n-    // Update a jobs with id\n-    router.put(\"/:id\", jobs.update);\n-  \n-    app.use('/api/jobs', router);\n\\ No newline at end of file\n-  };\n-  \n+  var router = require(\"express\").Router();\n+\n+  // Create a new jobs\n+  router.post(\"/\", jobs.create);\n+\n+  // Retrieve all jobs\n+  router.get(\"/\", jobs.findAll);\n+\n+  // Update a jobs with id\n+  router.put(\"/:id\", jobs.update);\n+\n+  app.use(\"/api/jobs\", router);\n+};\n"
+                },
+                {
+                    "date": 1657962955827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   // Create a new jobs\n   router.post(\"/\", jobs.create);\n \n-  // Retrieve all jobs\n+  // Retrieve all jobs with conditions\n   router.get(\"/\", jobs.findAll);\n \n   // Update a jobs with id\n   router.put(\"/:id\", jobs.update);\n"
+                }
+            ],
+            "date": 1657951751956,
+            "name": "Commit-0",
+            "content": "module.exports = app => {\n    const tutorials = require(\"../controllers/tutorial.controller.js\");\n  \n    var router = require(\"express\").Router();\n  \n    // Create a new Tutorial\n    router.post(\"/\", tutorials.create);\n  \n    // Retrieve all Tutorials\n    router.get(\"/\", tutorials.findAll);\n  \n    // Retrieve all published Tutorials\n    router.get(\"/published\", tutorials.findAllPublished);\n  \n    // Retrieve a single Tutorial with id\n    router.get(\"/:id\", tutorials.findOne);\n  \n    // Update a Tutorial with id\n    router.put(\"/:id\", tutorials.update);\n  \n    // Delete a Tutorial with id\n    router.delete(\"/:id\", tutorials.delete);\n  \n    // Delete all Tutorials\n    router.delete(\"/\", tutorials.deleteAll);\n  \n    app.use('/api/tutorials', router);\n  };\n  "
+        }
+    ]
+}

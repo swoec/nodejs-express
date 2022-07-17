@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/config/constants.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1657952481874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657952507994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,7 @@\n         INVOICING: 3,\n         TO_PRICED: 4,\n         COMPLETED:5\n     }\n-}\n\\ No newline at end of file\n+}\n+\n+module.exports = CONSTANTS;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1657952481874,
+            "name": "Commit-0",
+            "content": "\nvar CONSTANTS = {\n    JOB_STATUS : {\n        SCHEDULED: 1,\n        ACTIVE: 2,\n        INVOICING: 3,\n        TO_PRICED: 4,\n        COMPLETED:5\n    }\n}"
+        }
+    ]
+}

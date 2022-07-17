@@ -1,0 +1,50 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1657962477659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657962498597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n {\n   \"name\": \"nodejs-express-sequelize-mysql\",\n   \"version\": \"1.0.0\",\n-  \"description\": \"Node.js Rest Apis with Express, Sequelize & MySQL\",\n+  \"description\": \"Fergus\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n   },\n"
+                },
+                {
+                    "date": 1657962512490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n {\n-  \"name\": \"nodejs-express-sequelize-mysql\",\n+  \"name\": \"Fergus\",\n   \"version\": \"1.0.0\",\n   \"description\": \"Fergus\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n"
+                },
+                {
+                    "date": 1657962524835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n {\n-  \"name\": \"Fergus\",\n+  \"name\": \"fergus\",\n   \"version\": \"1.0.0\",\n   \"description\": \"Fergus\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n"
+                },
+                {
+                    "date": 1658015103999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,11 @@\n     \"cors\": \"^2.8.5\",\n     \"express\": \"^4.17.1\",\n     \"mysql2\": \"^2.0.2\",\n     \"sequelize\": \"^6.21.0\"\n+  },\n+  \"devDependencies\": {\n+    \"chai\": \"^3.4.0\",\n+    \"mocha\": \"^2.3.3\",\n+    \"proxyquire\": \"^1.7.3\"\n   }\n }\n"
+                },
+                {
+                    "date": 1658015123608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n   \"dependencies\": {\n     \"cors\": \"^2.8.5\",\n     \"express\": \"^4.17.1\",\n     \"mysql2\": \"^2.0.2\",\n-    \"sequelize\": \"^6.21.0\"\n+    \"sequelize\": \"^6.21.0\",\n+    \"request\": \"^2.65.0\"\n   },\n   \"devDependencies\": {\n     \"chai\": \"^3.4.0\",\n     \"mocha\": \"^2.3.3\",\n"
+                },
+                {
+                    "date": 1658015139075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     \"cors\": \"^2.8.5\",\n     \"express\": \"^4.17.1\",\n     \"mysql2\": \"^2.0.2\",\n     \"sequelize\": \"^6.21.0\",\n+    \"body-parser\": \"^1.14.1\",\n     \"request\": \"^2.65.0\"\n   },\n   \"devDependencies\": {\n     \"chai\": \"^3.4.0\",\n"
+                },
+                {
+                    "date": 1658016787853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   \"version\": \"1.0.0\",\n   \"description\": \"Fergus\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n-    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n+    \"test\": \"mocha ./test -R spec\"\n   },\n   \"keywords\": [\n     \"nodejs\",\n     \"express\",\n"
+                },
+                {
+                    "date": 1658016827941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   \"version\": \"1.0.0\",\n   \"description\": \"Fergus\",\n   \"main\": \"server.js\",\n   \"scripts\": {\n-    \"test\": \"mocha ./test -R spec\"\n+    \"test\": \"mocha ./app/test -R spec\"\n   },\n   \"keywords\": [\n     \"nodejs\",\n     \"express\",\n"
+                }
+            ],
+            "date": 1657962477659,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"nodejs-express-sequelize-mysql\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Node.js Rest Apis with Express, Sequelize & MySQL\",\n  \"main\": \"server.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\n  },\n  \"keywords\": [\n    \"nodejs\",\n    \"express\",\n    \"rest\",\n    \"api\",\n    \"sequelize\",\n    \"mysql\"\n  ],\n  \"author\": \"Alex Wang\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"express\": \"^4.17.1\",\n    \"mysql2\": \"^2.0.2\",\n    \"sequelize\": \"^6.21.0\"\n  }\n}\n"
+        }
+    ]
+}
