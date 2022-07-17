@@ -66,7 +66,7 @@ exports.update = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating jobId with id=" + id,
+        message: "Error updating note with id=" + id,
       });
     });
 };
